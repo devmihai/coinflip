@@ -311,10 +311,10 @@ animation-delay: 0.7s;
 
 @media (min-width:350px) and (max-width:768px) {
     .buttons{
-     width: 80vh;
+     justify-content: center;
  }
   button{
-      margin-left: 2em;
+      margin-left: 1em;
       padding: 10px 20px;
   }
 }
