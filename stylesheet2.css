@@ -309,3 +309,12 @@ animation-delay: 0.7s;
 50%,100% {bottom: 100%;}
 }
 
+@media (min-width:350px) and (max-width:768px) {
+    .buttons{
+     width: 80vh;
+ }
+  button{
+      margin-left: 2em;
+      padding: 10px 20px;
+  }
+}
