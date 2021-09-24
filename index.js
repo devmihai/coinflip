@@ -1,8 +1,8 @@
-let heads = 0;
-let tails = 0;
 let coin = document.querySelector(".coin");
 let flipBtn = document.querySelector("#toss-button");
 let resetBtn = document.querySelector("#reset-button");
+let header = document.getElementById("heads-counts")
+
 
 flipBtn.addEventListener("click", () => {
     let i = Math.floor(Math.random() * 2);
@@ -11,21 +11,23 @@ flipBtn.addEventListener("click", () => {
         setTimeout(function(){
             coin.style.animation = "spin-heads 3s forwards";
         }, 100);
-        heads++;
     }
     else{
         setTimeout(function(){
             coin.style.animation = "spin-tails 3s forwards";
         }, 100);
-        tails++;
     }
-    setTimeout(updateStats, 3000);
+    setTimeout(updateAdvice, 3000);
     disableButton();
 });
-function updateStats(){
-    document.getElementById("heads-counts").textContent = `Head : ${heads}`;
-    document.getElementById("tails-counts").textContent = `Tail : ${tails}`;
-}
+
+function updateAdvice(){
+    fetch("https://api.adviceslip.com/advice")
+    .then(res=>res.json())
+    .then(data=> 
+        header.textContent = `${data.slip.advice}`)};
+
+
 function disableButton(){
     flipBtn.disabled = true;
     setTimeout(function(){
@@ -34,7 +36,6 @@ function disableButton(){
 }
 resetBtn.addEventListener("click",() => {
     coin.style.animation = "none";
-    heads = 0;
-    tails = 0;
-    updateStats();
-});
+    header.textContent = "Do not take an app's advice too serious!";
+    disableButton();
+})
